@@ -10,5 +10,9 @@ export class BaseGameDirector extends Component {
     update(deltaTime: number) {
         
     }
+    protected onLoad(): void {
+        
+    }
 }
-
+
+

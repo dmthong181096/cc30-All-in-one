@@ -1,7 +1,7 @@
-import { _decorator, Component } from 'cc';
+import * as cc from 'cc';
 import { BaseSubscriber } from './BaseSubscriber';
 
-const { ccclass } = _decorator;
+const { ccclass } = cc._decorator;
 
 @ccclass('BaseVoiceManager')
 export class BaseVoiceManager extends BaseSubscriber {

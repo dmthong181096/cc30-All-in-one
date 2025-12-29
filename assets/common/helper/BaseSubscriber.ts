@@ -13,14 +13,22 @@ const { ccclass } = _decorator;
 export class BaseSubscriber extends Component {
     
     private static eventEmitter: EventEmitter = new EventEmitter();
+
+    onLoad(): void {
+        
+    }
+    start(): void {
+        
+    }
     
     getDataStore(): BaseDataStore {
         return new BaseDataStore
     }
     
-    getConfig(): BaseConfig {
-        return new BaseConfig
+    getConfig() {
+        return new BaseConfig as any;
     }
+    
     getAssetsManager(): BaseAssetsManager {
         return new BaseAssetsManager
     }
