@@ -1,0 +1,13 @@
+{
+  "name": "NewProject",
+  "uuid": "dc7506ca-045a-453d-a484-a8e51e5f58b1",
+  "creator": {
+    "version": "3.8.8"
+  },
+  "dependencies": {
+    "events": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/events": "^3.0.3"
+  }
+}
