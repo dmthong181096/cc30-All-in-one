@@ -17,12 +17,12 @@ export class BaseSubscriber extends Component {
     onLoad(): void {
         
     }
-    start(): void {
+    public start(): void {
         
     }
     
-    getDataStore(): BaseDataStore {
-        return new BaseDataStore
+    getDataStore() {
+        return new BaseDataStore as any;
     }
     
     getConfig() {

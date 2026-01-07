@@ -5,3 +5,4 @@ export { BaseDataStore } from './helper/BaseDataStore';
 export { BaseConfig } from './helper/BaseConfig';
 export { BaseGameDirector } from './BaseGameDirector';
 export {BaseGameWriter} from './BaseGameWriter';
+export {BaseLoadingScene} from './components/BaseLoadingScene'
