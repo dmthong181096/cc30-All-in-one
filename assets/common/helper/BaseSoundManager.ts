@@ -1,8 +1,8 @@
 import { _decorator, Component, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('BaseGameWriter')
-export class BaseGameWriter extends Component {
+@ccclass('BaseSoundManager')
+export class BaseSoundManager extends Component {
     start() {
 
     }

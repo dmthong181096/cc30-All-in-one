@@ -13,7 +13,6 @@ export class BaseLoadingScene extends BaseSubscriber {
     
     protected preloadGameScene(): void {
         if(!this.gameSceneName){
-            cc.error("❌ LOADINGSCENE: Game Scene Name is not set");
             return;
         }
         cc.director.preloadScene(this.gameSceneName, 
@@ -23,8 +22,7 @@ export class BaseLoadingScene extends BaseSubscriber {
             }, 
             (error: Error | null) => {
                 if (error) {
-                    cc.error(`❌ LOADINGSCENE: Failed to preload scene: ${error.message}`);
-                } else {
+                    } else {
                     this.updateProgress(1);
                     this.scheduleOnce(() => {
                         cc.director.loadScene(this.gameSceneName);

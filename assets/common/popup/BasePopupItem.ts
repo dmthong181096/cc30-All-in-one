@@ -42,9 +42,9 @@ export class BasePopupItem extends BaseSubscriber {
     }
 
     hidePopup(isAnim = true){
-        if(!this.isShowing) return;
+        if(!this.isShowing && isAnim) return;
         this.isShowing = false;
-          this.node.active = true;
+        this.node.active = true;
         cc.Tween.stopAllByTarget(this.mainContainer);
         if(isAnim){
             this.mainContainer.scale = cc.v3(1, 1, 1);

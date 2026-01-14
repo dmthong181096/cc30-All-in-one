@@ -26,7 +26,6 @@ export class BaseVoiceManager extends BaseSubscriber {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         
         if (!SpeechRecognition) {
-            console.warn('Speech Recognition not supported');
             this.fireEvent('voice-not-supported');
             return;
         }

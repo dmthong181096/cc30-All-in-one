@@ -15,10 +15,13 @@ export class BaseSubscriber extends Component {
     private static eventEmitter: EventEmitter = new EventEmitter();
 
     onLoad(): void {
-        
+        this.init();
     }
     public start(): void {
         
+    }
+    init(){
+
     }
     
     getDataStore() {

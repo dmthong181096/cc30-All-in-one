@@ -29,7 +29,6 @@ export class BaseDataStore extends cc.Component {
         try {
             return JSON.parse(dataString);
         } catch (e) {
-            cc.warn(`Failed to parse localStorage data for ${this.gameID}:`, e);
             return {};
         }
     }
