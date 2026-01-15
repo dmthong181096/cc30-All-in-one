@@ -1,4 +1,4 @@
-import { _decorator, Component, Canvas, view, screen, ResolutionPolicy, UITransform } from 'cc';
+import { _decorator, Component, Canvas, view, screen, ResolutionPolicy, UITransform, Enum } from 'cc';
 
 const { ccclass, property } = _decorator;
 
@@ -10,6 +10,8 @@ export enum ScaleMode {
     NO_BORDER = 4
 }
 
+Enum(ScaleMode);
+
 @ccclass('CanvasScaler')
 export class CanvasScaler extends Component {
     
@@ -19,11 +21,11 @@ export class CanvasScaler extends Component {
     @property
     designHeight: number = 1280;
     
-    // @property({
-    //     type: ScaleMode,
-    //     tooltip: 'AUTO: Tự động chọn policy phù hợp\nFIT_WIDTH: Fit theo width\nFIT_HEIGHT: Fit theo height\nSHOW_ALL: Hiện tất cả (letterbox)\nNO_BORDER: Fill màn hình (crop)'
-    // })
-    // scaleMode: ScaleMode = ScaleMode.AUTO;
+    @property({
+        type: Enum(ScaleMode),
+        tooltip: 'AUTO: Tự động chọn policy phù hợp\nFIT_WIDTH: Fit theo width\nFIT_HEIGHT: Fit theo height\nSHOW_ALL: Hiện tất cả (letterbox)\nNO_BORDER: Fill màn hình (crop)'
+    })
+    scaleMode: ScaleMode = ScaleMode.AUTO;
 
     @property({
         tooltip: 'Tự động điều chỉnh khi resize/rotate màn hình'

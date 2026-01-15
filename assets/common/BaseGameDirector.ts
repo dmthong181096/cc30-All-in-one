@@ -1,8 +1,9 @@
 import { _decorator, Component, Node } from 'cc';
+import { BaseSubscriber } from './helper/BaseSubscriber';
 const { ccclass, property } = _decorator;
 
 @ccclass('BaseGameDirector')
-export class BaseGameDirector extends Component {
+export class BaseGameDirector extends BaseSubscriber {
     start() {
 
     }
@@ -10,8 +11,12 @@ export class BaseGameDirector extends Component {
     update(deltaTime: number) {
         
     }
-    protected onLoad(): void {
-        
+    onLoad(): void {
+        this.registerEvents();
+    }
+
+    registerEvents(): void {
+
     }
 }
 
