@@ -9,3 +9,4 @@ export {BaseLoadingScene} from './components/BaseLoadingScene'
 export {BasePopupItem} from './popup/BasePopupItem'
 export {BasePopupManager} from './popup/BasePopupManager'
 export {BaseSoundManager} from './helper/BaseSoundManager'
+export {BaseAnimateCounter} from "./helper/BaseAnimateCounter"
