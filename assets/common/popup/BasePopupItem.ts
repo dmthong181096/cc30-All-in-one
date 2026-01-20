@@ -8,6 +8,8 @@ export class BasePopupItem extends BaseSubscriber {
     mainContainer: cc.Node = null;
     @property({displayName: "Overlay", type: cc.Node})
     overlay: cc.Node = null;
+    @property({displayName:"Button Close", type: cc.Node})
+    btnClose: cc.Node = null;
 
 
 
@@ -18,9 +20,16 @@ export class BasePopupItem extends BaseSubscriber {
         this.hidePopup(false);
     }
     init() {
-       
+        this.initProps();
     }
-
+    initProps(){
+        if(this.btnClose){
+            this.btnClose.on(cc.Input.EventType.TOUCH_END, this.onClickClose, this);
+        }
+    }
+    onClickClose(){
+        this.hidePopup(true);
+    }
 
     showPopup(isAnim = true, data = {}) {
         if(this.isShowing) return;
@@ -41,7 +50,7 @@ export class BasePopupItem extends BaseSubscriber {
        
     }
 
-    hidePopup(isAnim = true){
+    hidePopup(isAnim = true ,callback = null){
         if(!this.isShowing && isAnim) return;
         this.isShowing = false;
         this.node.active = true;
@@ -52,6 +61,7 @@ export class BasePopupItem extends BaseSubscriber {
                 .to(0.3, {scale: cc.v3(0.7, 0.7, 0.7) }, { easing: 'backIn' })
                 .call(()=>{
                     this.node.active = false;
+                    if(callback) callback();
                 })
                 .start();
         }else {
