@@ -15,6 +15,9 @@ export class LobbyManager extends BaseSubscriber {
     @property(Button)
     btnVoiceGame: Button = null!;
 
+    @property(Button)
+    btnBlockBlast: Button = null!;
+
     init() {
         this.setupButtons();
     }
@@ -31,6 +34,13 @@ export class LobbyManager extends BaseSubscriber {
         if (this.btnVoiceGame) {
             this.btnVoiceGame.node.on(Button.EventType.CLICK, this.onVoiceGameClick, this);
         }
+        if (this.btnBlockBlast) {
+            this.btnBlockBlast.node.on(Button.EventType.CLICK, this.onBlockBlastClick, this);
+        }
+    }
+    private onBlockBlastClick() {
+        console.log('Loading Block Blast...');
+        director.loadScene('Loading04');
     }
 
     private onNeonPathClick() {
