@@ -19,6 +19,7 @@ export class BasePopupItem extends BaseSubscriber {
         this.isShowing = false;
         this.hidePopup(false);
     }
+
     init() {
         this.initProps();
     }
@@ -27,8 +28,16 @@ export class BasePopupItem extends BaseSubscriber {
             this.btnClose.on(cc.Input.EventType.TOUCH_END, this.onClickClose, this);
         }
     }
+
+    initOverlay (overlay: cc.Node){
+        if(!this.overlay){
+            this.overlay = overlay;
+        }
+    }
     onClickClose(){
-        this.hidePopup(true);
+        this.hidePopup(true, ()=>{
+            if(this.overlay) this.overlay.active = false;
+        });
     }
 
     showPopup(isAnim = true, data = {}) {

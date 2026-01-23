@@ -14,6 +14,9 @@ export class BaseDataStore extends cc.Component {
         existingData[key] = value;
         cc.sys.localStorage.setItem(this.gameID, JSON.stringify(existingData));
     }
+
+
+
     
     getLocalStoreByKey(key: string): any {
         if(this.gameID == ""){
@@ -21,10 +24,10 @@ export class BaseDataStore extends cc.Component {
         }
         
         const data = this.getAllData();
-        return data[key] || 0;
+        return data[key] == null || data[key] == undefined ? 0 : data[key];
     }
     
-    private getAllData(): any {
+    getAllData(): any {
         const dataString = cc.sys.localStorage.getItem(this.gameID) || '{}';
         try {
             return JSON.parse(dataString);
@@ -36,6 +39,29 @@ export class BaseDataStore extends cc.Component {
     defineKey(){
       
     }
+
+    toggleSound(isOn: boolean): void {
+        this.setLocalStoreByKey("toggleSound", isOn);
+    }
+    getToggleSound(): boolean {
+        let result = this.getLocalStoreByKey("toggleSound");
+        if(this.getLocalStoreByKey("toggleSound") == null || this.getLocalStoreByKey("toggleSound") == undefined){
+            result = true;
+        }
+        return result;
+    }
+    getToggleMusic(): boolean {
+        let result = this.getLocalStoreByKey("toggleMusic");
+        if(this.getLocalStoreByKey("toggleMusic") == null || this.getLocalStoreByKey("toggleMusic") == undefined){
+            result = true;
+        }
+        return result;
+    }
+    
+    toggleMusic(isOn: boolean): void {
+        this.setLocalStoreByKey("toggleMusic", isOn);
+    }
+    
     
 }
 
