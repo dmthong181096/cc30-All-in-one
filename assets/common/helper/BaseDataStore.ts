@@ -15,9 +15,6 @@ export class BaseDataStore extends cc.Component {
         cc.sys.localStorage.setItem(this.gameID, JSON.stringify(existingData));
     }
 
-
-
-    
     getLocalStoreByKey(key: string): any {
         if(this.gameID == ""){
             this.defineKey();
@@ -60,6 +57,14 @@ export class BaseDataStore extends cc.Component {
     
     toggleMusic(isOn: boolean): void {
         this.setLocalStoreByKey("toggleMusic", isOn);
+    }
+
+    getHighScore(): number {
+        return this.getLocalStoreByKey("highScore") || 0;
+    }
+
+    setHighScore(score: number): void {
+        this.setLocalStoreByKey("highScore", score);
     }
     
     
