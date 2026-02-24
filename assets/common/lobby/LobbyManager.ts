@@ -39,22 +39,20 @@ export class LobbyManager extends BaseSubscriber {
         }
     }
     private onBlockBlastClick() {
-        console.log('Loading Block Blast...');
         director.loadScene('Loading04');
     }
 
     private onNeonPathClick() {
-        console.log('Loading Neon Path Puzzle...');
         director.loadScene('Loading02');
     }
 
     private onRadarStrikeClick() {
-        console.log('Loading Radar Strike...');
+
         director.loadScene('Loading03');
     }
 
     private onVoiceGameClick() {
-        console.log('Loading Voice Game...');
+
         director.loadScene('Loading01');
     }
 

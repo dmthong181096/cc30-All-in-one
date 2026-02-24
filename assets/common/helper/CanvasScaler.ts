@@ -74,23 +74,15 @@ export class CanvasScaler extends Component {
         const isScreenLandscape = screenWidth > screenHeight;
         const isDesignPortrait = this.designWidth < this.designHeight;
 
-        console.log(`[CanvasScaler] Screen: ${screenWidth}x${screenHeight} (ratio: ${screenRatio.toFixed(2)}, ${isScreenLandscape ? 'landscape' : 'portrait'})`);
-        console.log(`[CanvasScaler] Design: ${this.designWidth}x${this.designHeight} (ratio: ${designRatio.toFixed(2)}, ${isDesignPortrait ? 'portrait' : 'landscape'})`);
-
         let finalWidth = this.designWidth;
         let finalHeight = this.designHeight;
         let policy: ResolutionPolicy;
 
-        // Nếu screen landscape nhưng design portrait
         if (isScreenLandscape && isDesignPortrait) {
             if (this.allowRotateDesign) {
-                // Rotate design
                 finalWidth = this.designHeight;
                 finalHeight = this.designWidth;
-                console.log(`[CanvasScaler] Rotated design to: ${finalWidth}x${finalHeight}`);
             } else {
-                // Không rotate - dùng SHOW_ALL để hiện toàn bộ portrait UI trên landscape screen
-                console.log(`[CanvasScaler] Portrait design on landscape screen - using SHOW_ALL`);
                 view.setDesignResolutionSize(
                     this.designWidth,
                     this.designHeight,
@@ -102,27 +94,20 @@ export class CanvasScaler extends Component {
                     uiTransform.width = this.designWidth;
                     uiTransform.height = this.designHeight;
                 }
-                console.log(`[CanvasScaler] Applied: ${this.designWidth}x${this.designHeight}, Policy: SHOW_ALL`);
                 return;
             }
         }
 
-        // Chọn policy
         if (this.scaleMode === ScaleMode.AUTO) {
-            // Auto: chọn policy dựa trên tỷ lệ màn hình
             const finalDesignRatio = finalWidth / finalHeight;
             
             if (Math.abs(screenRatio - finalDesignRatio) < 0.1) {
-                // Tỷ lệ gần giống nhau
                 policy = ResolutionPolicy.SHOW_ALL;
             } else if (screenRatio < finalDesignRatio) {
-                // Màn hình hẹp hơn design (1.46 < 1.78) -> fit height để không crop
                 policy = ResolutionPolicy.FIXED_HEIGHT;
             } else {
-                // Màn hình rộng hơn design -> fit width
                 policy = ResolutionPolicy.FIXED_WIDTH;
             }
-            console.log(`[CanvasScaler] AUTO selected: ${this.getPolicyName(policy)} (screen ratio ${screenRatio.toFixed(2)} vs design ${finalDesignRatio.toFixed(2)})`);
         } else {
             policy = this.getPolicyFromMode(this.scaleMode);
         }
@@ -135,8 +120,6 @@ export class CanvasScaler extends Component {
             uiTransform.width = finalWidth;
             uiTransform.height = finalHeight;
         }
-
-        console.log(`[CanvasScaler] Applied: ${finalWidth}x${finalHeight}, Policy: ${this.getPolicyName(policy)}`);
     }
 
     private getPolicyFromMode(mode: ScaleMode): ResolutionPolicy {
